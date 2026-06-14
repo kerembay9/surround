@@ -7,3 +7,6 @@
 next-env.d.ts
 .env*
 .vercel
+
+# large binaries hosted at deploy time, not in git (GitHub blocks >100MB)
+/public/downloads/
