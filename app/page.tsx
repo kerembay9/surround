@@ -38,14 +38,14 @@ const SYNC = [
 
 const ROLES = ["Stereo", "Left", "Right", "Mono"];
 
-// Desktop host installers. The macOS .dmg files are served straight from this
-// site (public/downloads), so a non-technical user just clicks and the download
-// starts — no GitHub, no steps. Windows isn't built yet; that link points at the
-// release once it exists.
+// Desktop host installers, served as GitHub Release assets (built for large
+// binaries, unlike a static CDN). The links force a direct download, so a
+// non-technical user just clicks and the file starts downloading — no GitHub
+// UI. Version-less names keep "latest/download" valid across releases.
 const RELEASES = "https://github.com/kerembay9/surround/releases/latest/download";
 const DOWNLOADS = [
-  { label: "Download for macOS — Apple Silicon", href: "/downloads/Surround-mac-arm64.dmg", primary: true },
-  { label: "macOS — Intel", href: "/downloads/Surround-mac-x64.dmg", primary: false },
+  { label: "Download for macOS — Apple Silicon", href: `${RELEASES}/Surround-mac-arm64.dmg`, primary: true },
+  { label: "macOS — Intel", href: `${RELEASES}/Surround-mac-x64.dmg`, primary: false },
   { label: "Windows (coming soon)", href: `${RELEASES}/Surround-windows-x64.exe`, primary: false },
 ];
 
@@ -186,9 +186,7 @@ export default function Landing() {
               variant={d.primary ? "default" : "outline"}
               className="px-7 text-base"
             >
-              <a href={d.href} download>
-                {d.label}
-              </a>
+              <a href={d.href}>{d.label}</a>
             </Button>
           ))}
         </div>
